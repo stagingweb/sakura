@@ -2,6 +2,21 @@
   position: relative;
   height: 100vh;
   overflow: hidden;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    // background: radial-gradient(
+    //   50% 50% at 50% 50%,
+    //   rgba(33, 28, 25, 0) 0%,
+    //   #211c19 100%
+    // );
+    background: var(--bg-radial);
+    z-index: 1;
+  }
   &.box-border {
     .make-item {
       --outer-size: 8px; // độ dày lớp đen ngoài
@@ -70,10 +85,12 @@
     padding-top: 140px;
     display: flex;
     justify-content: center;
-    align-items: center;
+    position: relative;
+    z-index: 4;
     @media (max-width: 767px) {
       max-width: calc(100% - 40px);
       padding: 0;
+      align-items: center;
     }
   }
   &-main {
@@ -97,10 +114,12 @@
     z-index: 2;
     max-width: calc(2 / 12 * 100%);
     width: 100%;
-    --gap: 50%;
-    top: var(--make-item-top, calc(100% + var(--i) * var(--gap)));
+    --gap: 30%;
+    top: var(--make-item-top, calc(50% + var(--i) * var(--gap)));
     @media (max-width: 767px) {
+      --gap: 50%;
       max-width: 220px;
+      top: var(--make-item-top, calc(100% + var(--i) * var(--gap)));
     }
     &:nth-child(4n + 1) {
       left: 15%;

@@ -3,7 +3,7 @@ import {
   customDropdown,
   createFilterTab,
   getDateLightPick,
-  contact
+  contact,
 } from "../../main/js/global.min.js";
 
 const $ = jQuery;
@@ -51,8 +51,8 @@ function initParallaxSwiper(swiperEl, options = {}) {
           if (image) image.style.transition = `${speed}ms ${easing}`;
         });
       },
-      ...(options.on || {})
-    }
+      ...(options.on || {}),
+    },
   });
 }
 
@@ -66,8 +66,8 @@ function initSwiper() {
   const swiperParallax = initParallaxSwiper(swiperEl, {
     navigation: {
       nextEl: containerSwiperEl.querySelector(".swiper-button-next"),
-      prevEl: containerSwiperEl.querySelector(".swiper-button-prev")
-    }
+      prevEl: containerSwiperEl.querySelector(".swiper-button-prev"),
+    },
   });
 }
 function heroCover() {
@@ -114,8 +114,8 @@ function heroCover() {
         trigger: hero,
         start: "top+=10% top",
         end: "+=60%",
-        scrub: true
-      }
+        scrub: true,
+      },
     });
 
     tl.to(
@@ -124,18 +124,18 @@ function heroCover() {
         backgroundColor: "#000",
         stagger: 0.005,
         ease: "power3.out",
-        duration: 0.4 // đen nhanh hơn, kết thúc sớm hơn khi timeline chạy tới 40%
+        duration: 0.4, // đen nhanh hơn, kết thúc sớm hơn khi timeline chạy tới 40%
       },
-      0
+      0,
     ).to(
       ".blind-strip-v",
       {
         rotationY: 0,
         stagger: 0.005,
         ease: "power3.out",
-        duration: 1
+        duration: 1,
       },
-      0
+      0,
     );
 
     return () => tl.kill();
@@ -147,8 +147,8 @@ function heroCover() {
         trigger: hero,
         start: "top top",
         end: "+=50%", // rút ngắn từ 100% xuống 60%
-        scrub: true
-      }
+        scrub: true,
+      },
     });
 
     tl.to(
@@ -157,18 +157,18 @@ function heroCover() {
         backgroundColor: "#000",
         stagger: 0.005,
         ease: "power3.out",
-        duration: 0.4
+        duration: 0.4,
       },
-      0
+      0,
     ).to(
       ".blind-strip-v",
       {
         rotationY: 0,
         stagger: 0.005,
         ease: "power3.out",
-        duration: 1
+        duration: 1,
       },
-      0
+      0,
     );
 
     return () => tl.kill();
@@ -232,7 +232,7 @@ function initSmoothAnchorScroll() {
       duration: 3,
       offset,
       immediate: false,
-      force: true
+      force: true,
     });
 
     if (window.location.hash !== url.hash) {
@@ -263,9 +263,9 @@ function initContactQrScroll() {
         autoAlpha: shouldHide ? 0 : 1,
         duration: 0.4,
         ease: "power2.out",
-        overwrite: "auto"
+        overwrite: "auto",
       });
-    }
+    },
   });
 }
 
@@ -286,6 +286,7 @@ document.addEventListener("DOMContentLoaded", () => {
   animationBox();
   animationMake();
   headerMobile();
+  animationMakeDesktop();
   footer();
 });
 
@@ -326,7 +327,7 @@ function headerMobile() {
 
       const subMenu = this.parentElement.querySelector(".sub-menu");
       const allSubMenus = Array.from(
-        document.querySelectorAll("#header .sub-menu")
+        document.querySelectorAll("#header .sub-menu"),
       ).filter((el) => el !== subMenu);
 
       allSubMenus.forEach((el) => {
@@ -353,7 +354,7 @@ function headerMobile() {
             }
             subMenu.removeEventListener("transitionend", handler);
           },
-          { once: true }
+          { once: true },
         );
       }
     });
@@ -372,8 +373,8 @@ function intro() {
         start: "top 95%",
         end: "+=600",
         scrub: true,
-        markers: false
-      }
+        markers: false,
+      },
     });
   }
 }
@@ -388,9 +389,9 @@ function footer() {
       trigger: radiusSection,
       start: "top 90%",
       end: "top 75%",
-      scrub: true
+      scrub: true,
       // markers: true,
-    }
+    },
   });
 }
 // function animationImage() {
@@ -433,10 +434,10 @@ function animationBox() {
       ? box.closest(".section-branch__card")
       : null;
     const branchTitle = branchCard?.querySelector(
-      ".section-branch__content h3"
+      ".section-branch__content h3",
     );
     const branchButton = branchCard?.querySelector(
-      ".section-branch__content .button-global"
+      ".section-branch__content .button-global",
     );
     if (branchTitle) {
       gsap.set(branchTitle, { y: 30, autoAlpha: 0 });
@@ -452,8 +453,8 @@ function animationBox() {
         start: "top 65%",
         toggleActions: "play none none none",
         once: true,
-        invalidateOnRefresh: true
-      }
+        invalidateOnRefresh: true,
+      },
     });
 
     timeline.fromTo(
@@ -463,8 +464,8 @@ function animationBox() {
         autoAlpha: 1,
         duration: 1,
         y: 0,
-        ease: "power1.out"
-      }
+        ease: "power1.out",
+      },
     );
 
     if (branchTitle) {
@@ -472,7 +473,7 @@ function animationBox() {
         autoAlpha: 1,
         y: 0,
         duration: 0.4,
-        ease: "power2.out"
+        ease: "power2.out",
       });
     }
 
@@ -483,9 +484,9 @@ function animationBox() {
           autoAlpha: 1,
           y: 0,
           duration: 0.4,
-          ease: "power2.out"
+          ease: "power2.out",
         },
-        branchTitle ? "-=0.2" : undefined
+        branchTitle ? "-=0.2" : undefined,
       );
     }
   });
@@ -513,9 +514,9 @@ function animationText() {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: headingElement,
-          start: "top 80%"
+          start: "top 80%",
           // markers: true,
-        }
+        },
       });
 
       // Logo chạy đầu tiên
@@ -524,7 +525,7 @@ function animationText() {
           y: 20,
           opacity: 0,
           duration: 0.4,
-          ease: "power2.out"
+          ease: "power2.out",
         });
       }
 
@@ -534,9 +535,9 @@ function animationText() {
           y: 0,
           autoAlpha: 1,
           duration: 0.65,
-          ease: "power2.out"
+          ease: "power2.out",
         },
-        logo ? "-=0.15" : 0
+        logo ? "-=0.15" : 0,
       );
 
       // Desc: y 20 -> 0 kèm opacity, giống button
@@ -547,9 +548,9 @@ function animationText() {
             y: 0,
             autoAlpha: 1,
             duration: 0.6,
-            ease: "power2.out"
+            ease: "power2.out",
           },
-          "-=0.3"
+          "-=0.3",
         );
       }
 
@@ -560,9 +561,9 @@ function animationText() {
             y: 20,
             opacity: 0,
             duration: 0.4,
-            ease: "power2.out"
+            ease: "power2.out",
           },
-          "-=0.15"
+          "-=0.3",
         );
       }
 
@@ -570,7 +571,7 @@ function animationText() {
         tl.from(
           button,
           { y: 20, opacity: 0, duration: 0.4, ease: "power2.out" },
-          "-=0.15"
+          "-=0.15",
         );
       }
 
@@ -586,9 +587,9 @@ function animationText() {
               autoAlpha: 1,
               duration: 0.75,
               stagger: 0.18,
-              ease: "power2.out"
+              ease: "power2.out",
             },
-            "+=0.12"
+            "+=0.12",
           );
         }
       }
@@ -607,8 +608,8 @@ function animationText() {
         scrollTrigger: {
           trigger: btn,
           start: "top 90%",
-          once: true
-        }
+          once: true,
+        },
       });
     });
 
@@ -624,8 +625,8 @@ function animationText() {
         scrollTrigger: {
           trigger: form,
           start: "top 85%",
-          once: true
-        }
+          once: true,
+        },
       });
     });
 
@@ -645,8 +646,8 @@ function animationText() {
         scrollTrigger: {
           trigger: group,
           start: "top 90%",
-          once: true
-        }
+          once: true,
+        },
       });
     });
   });
@@ -661,14 +662,14 @@ function slider() {
       spaceBetween: 20,
       navigation: {
         nextEl: parent.querySelector(".swiper-button-next"),
-        prevEl: parent.querySelector(".swiper-button-prev")
+        prevEl: parent.querySelector(".swiper-button-prev"),
       },
       breakpoints: {
         768: {
           slidesPerView: 3.4,
-          spaceBetween: 24
-        }
-      }
+          spaceBetween: 24,
+        },
+      },
     });
   });
 }
@@ -767,6 +768,7 @@ function slider() {
 // }
 
 function animationMake() {
+  if (window.innerWidth > 992) return;
   document.querySelectorAll(".make").forEach((section) => {
     if (section.dataset.revealInitialized) return;
     section.dataset.revealInitialized = true;
@@ -801,7 +803,7 @@ function animationMake() {
         if (isMakeMainHidden) {
           isMakeMainHidden = false;
           gsap.set(makeMain, {
-            clearProps: "opacity,visibility,transform"
+            clearProps: "opacity,visibility,transform",
           });
         }
         return;
@@ -818,7 +820,7 @@ function animationMake() {
         y: shouldHide ? -24 : 0,
         duration: 0.5,
         ease: "power2.out",
-        overwrite: "auto"
+        overwrite: "auto",
       });
     };
 
@@ -851,7 +853,7 @@ function animationMake() {
         for (let c = 0; c < cols; c++) {
           cells.push({
             x: AREA.xMin + cellW * (c + 0.5),
-            y: AREA.yMin + cellH * (r + 0.5)
+            y: AREA.yMin + cellH * (r + 0.5),
           });
         }
       }
@@ -865,7 +867,7 @@ function animationMake() {
 
       const getSpot = (cell) => ({
         x: cell.x + randBetween(-jitterX, jitterX),
-        y: cell.y + randBetween(-jitterY, jitterY)
+        y: cell.y + randBetween(-jitterY, jitterY),
       });
 
       // Gán vị trí + kích thước ngẫu nhiên cho flower gốc trước (mỗi bông 1 ô riêng)
@@ -887,7 +889,7 @@ function animationMake() {
         clone.style.setProperty("--fy", spot.y + "%");
         clone.style.setProperty(
           "--fscale",
-          gsap.utils.random(0.7, 1.3).toFixed(2)
+          gsap.utils.random(0.7, 1.3).toFixed(2),
         );
 
         flowerGroup.appendChild(clone);
@@ -904,14 +906,14 @@ function animationMake() {
         const mobileEndGap = 80;
         const finalItemTop = Math.max(
           0,
-          window.innerHeight - lastItem.offsetHeight - mobileEndGap
+          window.innerHeight - lastItem.offsetHeight - mobileEndGap,
         );
 
         return Math.max(0, lastItem.offsetTop - finalItemTop);
       }
 
       return Math.max(
-        ...[...items].map((item) => item.offsetTop + item.offsetHeight)
+        ...[...items].map((item) => item.offsetTop + item.offsetHeight),
       );
     };
 
@@ -928,9 +930,9 @@ function animationMake() {
         onRefresh: () => {
           layoutMakeItems();
           updateMakeMainVisibility();
-        }
+        },
         // markers: true,
-      }
+      },
     });
 
     // Các item chạy lên
@@ -938,9 +940,9 @@ function animationMake() {
       items,
       {
         y: () => -getMaxTravel(),
-        duration: 1
+        duration: 1,
       },
-      0
+      0,
     );
 
     // Flower lần lượt hiện, xen kẽ ngẫu nhiên kiểu blur / zoom
@@ -971,7 +973,7 @@ function animationMake() {
           flower,
           { autoAlpha: 0, scale: 1, filter: `blur(${blurFrom}px)` },
           { autoAlpha: 1, scale: 1, filter: "blur(0px)", duration },
-          startAt
+          startAt,
         );
       } else {
         // Nhóm zoom: từ ẩn + to → hiện + về đúng size, không blur
@@ -985,9 +987,204 @@ function animationMake() {
             scale: 1,
             filter: "blur(0px)",
             duration,
-            transformOrigin: "50% 50%"
+            transformOrigin: "50% 50%",
           },
-          startAt
+          startAt,
+        );
+      }
+    });
+
+    makeMouseParallax(section, items);
+  });
+}
+
+function animationMakeDesktop() {
+  if (window.innerWidth < 991) return;
+  document.querySelectorAll(".make").forEach((section) => {
+    if (section.dataset.revealInitialized) return;
+    section.dataset.revealInitialized = true;
+
+    const items = section.querySelectorAll(".make-item");
+    if (!items.length) return;
+
+    const makeMain = section.querySelector(".make-main");
+    const mobileMakeMedia = window.matchMedia("(max-width: 767px)");
+
+    const layoutMakeItems = () => {
+      if (!mobileMakeMedia.matches) {
+        items.forEach((item) => item.style.removeProperty("--make-item-top"));
+        return;
+      }
+
+      const itemGap = 55;
+      let nextItemTop = section.clientHeight;
+
+      items.forEach((item) => {
+        item.style.setProperty("--make-item-top", `${nextItemTop}px`);
+        nextItemTop += item.offsetHeight + itemGap;
+      });
+    };
+
+    items.forEach((item, i) => item.style.setProperty("--i", i));
+    layoutMakeItems();
+
+    // --- Clone thêm flower ngẫu nhiên ---
+    const flowerGroup = section.querySelector(".make-flower");
+    const baseFlowers = flowerGroup
+      ? [...flowerGroup.querySelectorAll(".flower-item")]
+      : [];
+
+    if (flowerGroup && baseFlowers.length) {
+      const EXTRA_COUNT = 5;
+      const TOTAL = baseFlowers.length + EXTRA_COUNT;
+
+      const AREA = { xMin: 5, xMax: 95, yMin: 5, yMax: 95 };
+
+      const cols = Math.ceil(Math.sqrt(TOTAL));
+      const rows = Math.ceil(TOTAL / cols);
+
+      const cellW = (AREA.xMax - AREA.xMin) / cols;
+      const cellH = (AREA.yMax - AREA.yMin) / rows;
+
+      const cells = [];
+      for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+          cells.push({
+            x: AREA.xMin + cellW * (c + 0.5),
+            y: AREA.yMin + cellH * (r + 0.5),
+          });
+        }
+      }
+      gsap.utils.shuffle(cells);
+
+      const randBetween = (min, max) => Math.random() * (max - min) + min;
+
+      const jitterX = cellW * 0.3;
+      const jitterY = cellH * 0.3;
+
+      const getSpot = (cell) => ({
+        x: cell.x + randBetween(-jitterX, jitterX),
+        y: cell.y + randBetween(-jitterY, jitterY),
+      });
+
+      baseFlowers.forEach((f, i) => {
+        const spot = getSpot(cells[i]);
+        f.style.setProperty("--fx", spot.x + "%");
+        f.style.setProperty("--fy", spot.y + "%");
+        f.style.setProperty("--fscale", gsap.utils.random(0.7, 1.3).toFixed(2));
+      });
+
+      for (let i = 0; i < EXTRA_COUNT; i++) {
+        const source =
+          baseFlowers[Math.floor(Math.random() * baseFlowers.length)];
+        const clone = source.cloneNode(true);
+
+        const spot = getSpot(cells[baseFlowers.length + i]);
+        clone.style.setProperty("--fx", spot.x + "%");
+        clone.style.setProperty("--fy", spot.y + "%");
+        clone.style.setProperty(
+          "--fscale",
+          gsap.utils.random(0.7, 1.3).toFixed(2),
+        );
+
+        flowerGroup.appendChild(clone);
+      }
+    }
+
+    const flowers = section.querySelectorAll(".flower-item");
+
+    // Dừng khi item cuối cùng vừa lọt hẳn vào màn hình
+    const getMaxTravel = () => {
+      layoutMakeItems();
+      const lastItem = items[items.length - 1];
+
+      const endGap = mobileMakeMedia.matches ? 80 : 40;
+      const finalItemTop = Math.max(
+        0,
+        window.innerHeight - lastItem.offsetHeight - endGap,
+      );
+
+      return Math.max(0, lastItem.offsetTop - finalItemTop);
+    };
+
+    const tl = gsap.timeline({
+      defaults: { ease: "none" },
+      scrollTrigger: {
+        trigger: section,
+        start: "top top",
+        end: () => "+=" + getMaxTravel(),
+        pin: true,
+        scrub: 1,
+        invalidateOnRefresh: true,
+        onRefresh: () => {
+          layoutMakeItems();
+        },
+        // markers: true,
+      },
+    });
+
+    // Các item chạy lên
+    tl.to(
+      items,
+      {
+        y: () => -getMaxTravel(),
+        duration: 1,
+      },
+      0,
+    );
+
+    // make-main chạy lên cùng tốc độ, cùng lúc với items
+    if (makeMain) {
+      tl.to(
+        makeMain,
+        {
+          y: () => -getMaxTravel(),
+          duration: 1,
+        },
+        0,
+      );
+    }
+
+    // Flower lần lượt hiện, xen kẽ ngẫu nhiên kiểu blur / zoom
+    const flowerList = [...flowers];
+
+    flowerList.forEach((flower, i) => {
+      gsap.set(flower, { autoAlpha: i === 0 ? 1 : 0 });
+    });
+
+    const remaining = flowerList.slice(1);
+
+    remaining.forEach((flower, i) => {
+      const isBlurType = Math.random() < 0.5;
+      const duration = gsap.utils.random(0.25, 0.4);
+      const startAt =
+        remaining.length === 1
+          ? 1 - duration
+          : (i / (remaining.length - 1)) * (1 - duration);
+
+      if (isBlurType) {
+        const blurFrom = gsap.utils.random(4, 12);
+
+        tl.fromTo(
+          flower,
+          { autoAlpha: 0, scale: 1, filter: `blur(${blurFrom}px)` },
+          { autoAlpha: 1, scale: 1, filter: "blur(0px)", duration },
+          startAt,
+        );
+      } else {
+        const scaleFrom = gsap.utils.random(1.3, 1.8);
+
+        tl.fromTo(
+          flower,
+          { autoAlpha: 0, scale: scaleFrom, filter: "blur(0px)" },
+          {
+            autoAlpha: 1,
+            scale: 1,
+            filter: "blur(0px)",
+            duration,
+            transformOrigin: "50% 50%",
+          },
+          startAt,
         );
       }
     });
@@ -1007,12 +1204,12 @@ function makeMouseParallax(section, items) {
       const setters = [...items].map((item) => ({
         x: gsap.quickTo(item, "xPercent", {
           duration: 0.8,
-          ease: "power3.out"
+          ease: "power3.out",
         }),
         y: gsap.quickTo(item, "yPercent", {
           duration: 0.8,
-          ease: "power3.out"
-        })
+          ease: "power3.out",
+        }),
       }));
 
       const onMove = (e) => {
@@ -1040,6 +1237,6 @@ function makeMouseParallax(section, items) {
         section.removeEventListener("mouseleave", onLeave);
         gsap.set(items, { xPercent: 0, yPercent: 0 });
       };
-    }
+    },
   );
 }
