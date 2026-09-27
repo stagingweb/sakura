@@ -426,7 +426,68 @@ function footer() {
 function animationBox() {
   gsap.registerPlugin(ScrollTrigger);
 
+  const isMobile = window.matchMedia("(max-width: 767px)").matches;
+
+  if (isMobile) {
+    document.querySelectorAll(".section-branch").forEach((section) => {
+      const branchVisuals = section.querySelectorAll(
+        ".section-branch__visual.polygon-box",
+      );
+      const branchTitles = section.querySelectorAll(
+        ".section-branch__content h3",
+      );
+      const branchButtons = section.querySelectorAll(
+        ".section-branch__content .button-global",
+      );
+
+      if (!branchVisuals.length) return;
+
+      branchVisuals.forEach((visual) => {
+        visual.dataset.revealInitialized = true;
+      });
+
+      gsap.set(branchVisuals, { autoAlpha: 0, y: 20 });
+      gsap.set(branchTitles, { autoAlpha: 0, y: 30 });
+      gsap.set(branchButtons, { autoAlpha: 0, y: 20 });
+
+      const branchTimeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: "top 75%",
+          toggleActions: "play none none none",
+          once: true,
+          invalidateOnRefresh: true,
+        },
+      });
+
+      branchTimeline
+        .to(branchVisuals, {
+          autoAlpha: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power1.out",
+        })
+        .to(branchTitles, {
+          autoAlpha: 1,
+          y: 0,
+          duration: 0.4,
+          ease: "power2.out",
+        })
+        .to(
+          branchButtons,
+          {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.4,
+            ease: "power2.out",
+          },
+          "-=0.2",
+        );
+    });
+  }
+
   gsap.utils.toArray(".polygon-box").forEach((box) => {
+    if (isMobile && box.matches(".section-branch__visual")) return;
     if (box.dataset.revealInitialized) return;
     box.dataset.revealInitialized = true;
 
