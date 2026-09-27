@@ -768,7 +768,7 @@ function slider() {
 // }
 
 function animationMake() {
-  if (window.innerWidth > 992) return;
+  if (window.innerWidth >= 992) return;
   document.querySelectorAll(".make").forEach((section) => {
     if (section.dataset.revealInitialized) return;
     section.dataset.revealInitialized = true;
@@ -999,7 +999,7 @@ function animationMake() {
 }
 
 function animationMakeDesktop() {
-  if (window.innerWidth < 991) return;
+  if (window.innerWidth < 992) return;
   document.querySelectorAll(".make").forEach((section) => {
     if (section.dataset.revealInitialized) return;
     section.dataset.revealInitialized = true;
@@ -1007,26 +1007,7 @@ function animationMakeDesktop() {
     const items = section.querySelectorAll(".make-item");
     if (!items.length) return;
 
-    const makeMain = section.querySelector(".make-main");
-    const mobileMakeMedia = window.matchMedia("(max-width: 767px)");
-
-    const layoutMakeItems = () => {
-      if (!mobileMakeMedia.matches) {
-        items.forEach((item) => item.style.removeProperty("--make-item-top"));
-        return;
-      }
-
-      const itemGap = 55;
-      let nextItemTop = section.clientHeight;
-
-      items.forEach((item) => {
-        item.style.setProperty("--make-item-top", `${nextItemTop}px`);
-        nextItemTop += item.offsetHeight + itemGap;
-      });
-    };
-
     items.forEach((item, i) => item.style.setProperty("--i", i));
-    layoutMakeItems();
 
     // --- Clone thêm flower ngẫu nhiên ---
     const flowerGroup = section.querySelector(".make-flower");
@@ -1092,104 +1073,7 @@ function animationMakeDesktop() {
     }
 
     const flowers = section.querySelectorAll(".flower-item");
-
-    // Dừng khi item cuối cùng vừa lọt hẳn vào màn hình
-    const getMaxTravel = () => {
-      layoutMakeItems();
-      const lastItem = items[items.length - 1];
-
-      const endGap = mobileMakeMedia.matches ? 80 : 40;
-      const finalItemTop = Math.max(
-        0,
-        window.innerHeight - lastItem.offsetHeight - endGap,
-      );
-
-      return Math.max(0, lastItem.offsetTop - finalItemTop);
-    };
-
-    const tl = gsap.timeline({
-      defaults: { ease: "none" },
-      scrollTrigger: {
-        trigger: section,
-        start: "top top",
-        end: () => "+=" + getMaxTravel(),
-        pin: true,
-        scrub: 1,
-        invalidateOnRefresh: true,
-        onRefresh: () => {
-          layoutMakeItems();
-        },
-        // markers: true,
-      },
-    });
-
-    // Các item chạy lên
-    tl.to(
-      items,
-      {
-        y: () => -getMaxTravel(),
-        duration: 1,
-      },
-      0,
-    );
-
-    // make-main chạy lên cùng tốc độ, cùng lúc với items
-    if (makeMain) {
-      tl.to(
-        makeMain,
-        {
-          y: () => -getMaxTravel(),
-          duration: 1,
-        },
-        0,
-      );
-    }
-
-    // Flower lần lượt hiện, xen kẽ ngẫu nhiên kiểu blur / zoom
-    const flowerList = [...flowers];
-
-    flowerList.forEach((flower, i) => {
-      gsap.set(flower, { autoAlpha: i === 0 ? 1 : 0 });
-    });
-
-    const remaining = flowerList.slice(1);
-
-    remaining.forEach((flower, i) => {
-      const isBlurType = Math.random() < 0.5;
-      const duration = gsap.utils.random(0.25, 0.4);
-      const startAt =
-        remaining.length === 1
-          ? 1 - duration
-          : (i / (remaining.length - 1)) * (1 - duration);
-
-      if (isBlurType) {
-        const blurFrom = gsap.utils.random(4, 12);
-
-        tl.fromTo(
-          flower,
-          { autoAlpha: 0, scale: 1, filter: `blur(${blurFrom}px)` },
-          { autoAlpha: 1, scale: 1, filter: "blur(0px)", duration },
-          startAt,
-        );
-      } else {
-        const scaleFrom = gsap.utils.random(1.3, 1.8);
-
-        tl.fromTo(
-          flower,
-          { autoAlpha: 0, scale: scaleFrom, filter: "blur(0px)" },
-          {
-            autoAlpha: 1,
-            scale: 1,
-            filter: "blur(0px)",
-            duration,
-            transformOrigin: "50% 50%",
-          },
-          startAt,
-        );
-      }
-    });
-
-    makeMouseParallax(section, items);
+    gsap.set(flowers, { autoAlpha: 1 });
   });
 }
 function makeMouseParallax(section, items) {
