@@ -3115,6 +3115,16 @@ body {
   }
 }
 @media (min-width: 992px) {
+  .service-item > .col-lg-6:first-child {
+    flex: 0 0 55%;
+    width: 55%;
+    max-width: 55%;
+  }
+  .service-item > .col-lg-6:last-child {
+    flex: 0 0 45%;
+    width: 45%;
+    max-width: 45%;
+  }
   .service-item:nth-child(odd) .service-content {
     padding-left: 80px;
     padding-right: 0;
