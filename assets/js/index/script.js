@@ -576,7 +576,7 @@ function animationText() {
         scrollTrigger: {
           trigger: headingElement,
           start: "top 80%",
-          // markers: true,
+          markers: true,
         },
       });
 

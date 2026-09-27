@@ -1145,7 +1145,7 @@ body {
 }
 .hero-content {
   position: absolute;
-  top: 70vh;
+  top: 65vh;
   left: 0;
   right: 0;
   margin-inline: auto;
@@ -1169,6 +1169,13 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 8px;
+}
+.hero-content-wrapper > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
 }
 .hero-content-wrapper h2,
 .hero-content-wrapper a {
