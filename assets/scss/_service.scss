@@ -28,14 +28,14 @@
     &.line-left {
       width: 1px;
       height: auto;
-      background-color: var(--color-line);
+      background-color: var(--color-line-admin);
       top: var(--service-line-cap-height);
       bottom: var(--service-line-cap-height);
     }
     &.line-right {
       width: 1px;
       height: auto;
-      background-color: var(--color-line);
+      background-color: var(--color-line-admin);
       top: var(--service-line-cap-height);
       bottom: var(--service-line-cap-height);
       left: auto;
