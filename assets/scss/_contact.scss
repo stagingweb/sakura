@@ -49,7 +49,7 @@
       bottom: calc(
         var(--contact-artwork-bottom) + var(--contact-artwork-height) - 1px
       );
-      background-color: var(--color-line);
+      background-color: var(--color-line-admin);
       @media (max-width: 767px) {
         left: 20px;
       }
@@ -64,7 +64,7 @@
       bottom: calc(
         var(--contact-artwork-bottom) + var(--contact-artwork-height) - 1px
       );
-      background-color: var(--color-line);
+      background-color: var(--color-line-admin);
       @media (max-width: 767px) {
         right: 20px;
       }

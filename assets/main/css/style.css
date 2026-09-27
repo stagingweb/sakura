@@ -919,6 +919,23 @@ body {
   color: var(--color-bg);
 }
 
+@media (hover: hover) and (pointer: fine) {
+  :where(.section-branch__media,
+  .intro-image,
+  .explore-img,
+  .glow-img,
+  .service-image) img {
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform;
+  }
+  :where(.section-branch__media,
+  .intro-image,
+  .explore-img,
+  .glow-img,
+  .service-image):hover img {
+    transform: scale(1.1);
+  }
+}
 .button-global {
   display: flex;
   justify-content: center;
@@ -1273,7 +1290,7 @@ body {
   top: var(--intro-artwork-join);
   width: 1px;
   height: max(100% - var(--intro-artwork-join), 100vh - 100px - var(--intro-artwork-join));
-  background-color: var(--color-line);
+  background-color: var(--color-line-admin);
 }
 .intro-container::before {
   left: 32px;
@@ -1314,7 +1331,13 @@ body {
     aspect-ratio: 425/562;
   }
 }
+.intro-image picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
 .intro-image img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -1361,8 +1384,8 @@ body {
   }
 }
 .header-ham {
-  width: 44px;
-  height: 44px;
+  width: 32px;
+  height: 32px;
   border: 1px solid var(--color-default);
   transition: border 0.3s ease;
   display: flex;
@@ -1417,6 +1440,12 @@ body {
 .header-ham .ham-inner span:nth-child(3) {
   top: 15px;
 }
+@media (max-width: 767px) {
+  .header-logo img {
+    height: 30px;
+    width: auto;
+  }
+}
 .header-main {
   display: flex;
   align-items: center;
@@ -1425,11 +1454,11 @@ body {
 @media (max-width: 767px) {
   .header-main {
     position: fixed;
-    top: 76px;
+    top: 65px;
     left: 0;
     right: 0;
     width: 100%;
-    height: calc(100vh - 76px);
+    height: calc(100vh - 65px);
     background-color: var(--color-black);
     flex-direction: column;
     align-items: flex-start;
@@ -1548,6 +1577,11 @@ body {
   align-items: center;
   gap: 40px;
 }
+.header-gr-mobile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
 @media (max-width: 767px) {
   .header-gr {
     flex-direction: column;
@@ -1664,7 +1698,7 @@ body {
   width: 1px;
   height: auto;
   bottom: calc(var(--contact-artwork-bottom) + var(--contact-artwork-height) - 1px);
-  background-color: var(--color-line);
+  background-color: var(--color-line-admin);
 }
 @media (max-width: 767px) {
   .section-contact.layout-contact::before {
@@ -1679,7 +1713,7 @@ body {
   width: 1px;
   height: auto;
   bottom: calc(var(--contact-artwork-bottom) + var(--contact-artwork-height) - 1px);
-  background-color: var(--color-line);
+  background-color: var(--color-line-admin);
 }
 @media (max-width: 767px) {
   .section-contact.layout-contact::after {
@@ -2301,8 +2335,8 @@ body {
   max-width: calc(100% - 64px);
   width: 100%;
   margin: 0 auto;
-  border-left: 1px solid var(--color-line);
-  border-right: 1px solid var(--color-line);
+  border-left: 1px solid var(--color-line-admin);
+  border-right: 1px solid var(--color-line-admin);
   padding-top: 140px;
 }
 @media (max-width: 767px) {
@@ -2413,6 +2447,16 @@ body {
   position: relative;
   height: 100vh;
   overflow: hidden;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+.make::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--bg-radial);
+  z-index: 1;
 }
 .make.box-border .make-item {
   --outer-size: 8px;
@@ -2469,17 +2513,20 @@ body {
   width: 100%;
   height: 100%;
   margin: 0 auto;
-  border-left: 1px solid var(--color-line);
-  border-right: 1px solid var(--color-line);
+  border-left: 1px solid var(--color-line-admin);
+  border-right: 1px solid var(--color-line-admin);
   padding-top: 140px;
   display: flex;
   justify-content: center;
-  align-items: center;
+  position: relative;
+  z-index: 4;
+  isolation: isolate;
 }
 @media (max-width: 767px) {
   .make-inner {
     max-width: calc(100% - 40px);
     padding: 0;
+    align-items: center;
   }
 }
 .make-main {
@@ -2500,17 +2547,25 @@ body {
 .make-main h2 {
   text-align: center;
 }
+.make-list {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
 .make-item {
   position: absolute;
   z-index: 2;
   max-width: 16.6666666667%;
   width: 100%;
-  --gap: 50%;
-  top: var(--make-item-top, calc(100% + var(--i) * var(--gap)));
+  --gap: 30%;
+  top: var(--make-item-top, calc(50% + var(--i) * var(--gap)));
 }
 @media (max-width: 767px) {
   .make-item {
+    --gap: 50%;
     max-width: 220px;
+    top: var(--make-item-top, calc(100% + var(--i) * var(--gap)));
   }
 }
 .make-item:nth-child(4n+1) {
@@ -2578,7 +2633,7 @@ body {
 .make-flower {
   position: absolute;
   inset: 0;
-  z-index: 1;
+  z-index: 0;
   pointer-events: none;
 }
 .make-flower.hidden-flower {
@@ -2610,11 +2665,14 @@ body {
 }
 
 @media (max-width: 767px) {
+  .make .make-main {
+    display: none;
+  }
   .make:not(.box-border) .make-item {
-    left: 30px !important;
+    left: 10px !important;
     right: auto !important;
     max-width: none;
-    width: calc(100% - 60px);
+    width: calc(100% - 20px);
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     align-items: center;
@@ -2876,8 +2934,8 @@ body {
   width: 100%;
   height: 100%;
   margin: 0 auto;
-  border-left: 1px solid var(--color-line);
-  border-right: 1px solid var(--color-line);
+  border-left: 1px solid var(--color-line-admin);
+  border-right: 1px solid var(--color-line-admin);
   position: relative;
   z-index: 3;
 }
@@ -3039,14 +3097,14 @@ body {
 .service-line.line-left {
   width: 1px;
   height: auto;
-  background-color: var(--color-line);
+  background-color: var(--color-line-admin);
   top: var(--service-line-cap-height);
   bottom: var(--service-line-cap-height);
 }
 .service-line.line-right {
   width: 1px;
   height: auto;
-  background-color: var(--color-line);
+  background-color: var(--color-line-admin);
   top: var(--service-line-cap-height);
   bottom: var(--service-line-cap-height);
   left: auto;
@@ -3151,18 +3209,29 @@ body {
 .service-content .button-global {
   margin-top: 16px;
 }
-.service .service-image {
+.service-image {
   overflow: hidden;
   border-radius: 24px;
   width: 100%;
   aspect-ratio: 558/408;
 }
+.service-image-small {
+  overflow: hidden;
+  border-radius: 24px;
+  width: 200px;
+  aspect-ratio: 1;
+}
+.service-image-small img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 @media (max-width: 991px) {
-  .service .service-image {
+  .service-image {
     margin-bottom: 24px;
   }
 }
-.service .service-image img {
+.service-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
