@@ -1174,6 +1174,7 @@ body {
 .hero-content-wrapper a {
   position: relative;
   z-index: 10;
+  text-align: center;
 }
 .hero-img {
   width: 100%;
@@ -2565,6 +2566,11 @@ body {
     max-width: 220px;
     top: var(--make-item-top, calc(100% + var(--i) * var(--gap)));
   }
+}
+.make-item .star {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 12px;
 }
 .make-item:nth-child(4n+1) {
   left: 15%;

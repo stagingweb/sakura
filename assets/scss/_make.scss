@@ -128,6 +128,11 @@
       max-width: 220px;
       top: var(--make-item-top, calc(100% + var(--i) * var(--gap)));
     }
+    .star {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 12px;
+    }
     &:nth-child(4n + 1) {
       left: 15%;
       @media (max-width: 767px) {
